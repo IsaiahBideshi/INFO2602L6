@@ -13,11 +13,10 @@ async function login(event) {
   }
 
   form.reset();
-
-  let result = await sendRequest(`${server}/login`, 'POST', data);
- 
+  let result = await sendRequest(`${server}/token`, 'POST', data);
+  console.log(result);
   
-  if ("error" in result) {
+  if ("error" in result || result.detail === "Incorrect username or password") {
     toast("Login Failed: ");
   } else {
     toast("Logged Successful");
